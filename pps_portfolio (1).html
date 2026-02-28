@@ -1,0 +1,2726 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPS &mdash; Personal &amp; Professional Skills | Pravar Golecha</title>
+<meta name="description" content="PPS Portfolio by Pravar Golecha &mdash; Class 12 IBCP Personal &amp; Professional Skills">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* ===== TOKENS ===== */
+:root{
+  --bg:#0c0c18;--teal:#4ecdc4;--gold:#f5a623;--light:#f7f5f0;--muted:#525268;
+  --card-bg:rgba(255,255,255,.035);--card-border:rgba(78,205,196,.13);
+}
+
+/* ===== BASE ===== */
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:#e0e0e0;overflow-x:hidden}
+
+/* ===== TRANSITIONS ===== */
+.page-wrap{
+  opacity:1;
+  transition:opacity .38s ease, transform .38s cubic-bezier(0.16,1,0.3,1);
+  transform:translateY(0);
+}
+.page-wrap.exit{opacity:0;transform:translateY(14px);pointer-events:none}
+.page-wrap.enter{opacity:0;transform:translateY(-14px)}
+.page-wrap.enter-active{opacity:1;transform:translateY(0)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== HOME HERO ===== */
+.home-hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  background:linear-gradient(140deg,#060610 0%,#0c0c18 38%,#09203d 75%,#0c0c18 100%);
+  padding:2rem;text-align:center;
+}
+.home-hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 75% 55% at 12% 12%,rgba(78,205,196,.09) 0%,transparent 58%),
+    radial-gradient(ellipse 55% 70% at 88% 88%,rgba(245,166,35,.06) 0%,transparent 58%);
+}
+.home-hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.11;animation:floatOrb 11s ease-in-out infinite}
+.o1{width:400px;height:400px;background:var(--teal);top:-110px;left:-110px}
+.o2{width:300px;height:300px;background:var(--gold);bottom:-90px;right:-90px;animation-delay:-5.5s}
+.o3{width:200px;height:200px;background:#7b61ff;top:44%;left:60%;animation-delay:-2.8s}
+@keyframes floatOrb{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-26px) scale(1.04)}}
+
+.hero-inner{position:relative;z-index:2}
+.h-tag,.h-title,.h-sub,.h-div,.h-author{opacity:0}
+.h-tag{font-size:.67rem;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;animation:fadeUp .85s .22s cubic-bezier(0.16,1,0.3,1) forwards}
+.h-title{font-size:clamp(5rem,14vw,11.5rem);font-weight:900;letter-spacing:-.02em;line-height:.88;background:linear-gradient(140deg,#fff 0%,#d6f4f2 42%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp .85s .42s cubic-bezier(0.16,1,0.3,1) forwards}
+.h-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,2.2vw,1.45rem);font-weight:300;letter-spacing:.27em;color:rgba(255,255,255,.5);margin-top:1rem;text-transform:uppercase;animation:fadeUp .85s .62s cubic-bezier(0.16,1,0.3,1) forwards}
+.h-div{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--teal),transparent);margin:1.9rem auto;animation:fadeUp .85s .8s cubic-bezier(0.16,1,0.3,1) forwards}
+.h-author{font-size:.7rem;letter-spacing:.22em;color:rgba(255,255,255,.28);text-transform:uppercase;animation:fadeUp .85s .96s cubic-bezier(0.16,1,0.3,1) forwards}
+
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.45rem;z-index:2;opacity:0;animation:fadeUp .85s 1.35s cubic-bezier(0.16,1,0.3,1) forwards}
+.scroll-hint span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.26)}
+.scroll-line{width:1px;height:36px;background:linear-gradient(180deg,var(--teal),transparent);animation:linePulse 2.3s ease-in-out infinite}
+@keyframes linePulse{0%,100%{opacity:.25;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.14)}}
+
+/* ===== HOME ABOUT ===== */
+.about{background:#f7f5f0;color:#1c1c2c;padding:7rem 2rem}
+.about-inner{max-width:780px;margin:0 auto;text-align:center}
+.sec-label{font-size:.6rem;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.85rem}
+.about-h{font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:900;color:#0c0c18;margin-bottom:1.8rem;line-height:1.1}
+.about-p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,1.85vw,1.26rem);line-height:1.95;color:#525268}
+
+/* ===== PROJECTS GRID ===== */
+.projects{background:var(--bg);padding:7rem 2rem}
+.proj-head{text-align:center;margin-bottom:4.5rem}
+.proj-h{font-size:clamp(1.9rem,4.2vw,2.9rem);font-weight:900;color:#fff;margin-bottom:.65rem}
+.proj-sub{font-size:.83rem;color:rgba(255,255,255,.33);letter-spacing:.07em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.35rem;max-width:1180px;margin:0 auto}
+
+/* ===== CARD ===== */
+.card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:1.9rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.85rem;position:relative;overflow:hidden;cursor:pointer;transition:transform .38s cubic-bezier(0.16,1,0.3,1),border-color .38s ease,box-shadow .38s ease}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(78,205,196,.07) 0%,transparent 52%);opacity:0;transition:opacity .38s}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),rgba(78,205,196,.15));transform:scaleX(0);transform-origin:left;transition:transform .46s cubic-bezier(0.16,1,0.3,1)}
+.card:hover{transform:translateY(-8px);border-color:rgba(78,205,196,.4);box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(78,205,196,.1)}
+.card:hover::before{opacity:1}
+.card:hover::after{transform:scaleX(1)}
+.c-num{font-size:.6rem;font-weight:700;letter-spacing:.33em;color:var(--teal);opacity:.62}
+.c-bar{width:28px;height:2px;background:linear-gradient(90deg,var(--teal),rgba(78,205,196,.25));border-radius:2px;transition:width .42s cubic-bezier(0.16,1,0.3,1)}
+.card:hover .c-bar{width:50px}
+.c-title{font-size:1.1rem;font-weight:700;color:#fff;line-height:1.28}
+.c-desc{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.66;flex:1}
+.c-cta{display:inline-flex;align-items:center;gap:.55rem;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-top:.3rem;transition:gap .35s}
+.card:hover .c-cta{gap:.9rem}
+.c-cta svg{width:18px;height:10px;overflow:visible;transition:width .35s cubic-bezier(0.16,1,0.3,1)}
+.card:hover .c-cta svg{width:28px}
+
+/* ===== HOME FOOTER ===== */
+.home-footer{background:#060610;border-top:1px solid rgba(255,255,255,.05);padding:3rem 2rem;text-align:center}
+.home-footer p{font-size:.7rem;color:rgba(255,255,255,.2);letter-spacing:.1em}
+.home-footer strong{color:var(--teal)}
+
+/* ===== PROJECT PAGES ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2rem;background:rgba(12,12,24,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(78,205,196,.1)}
+.nav-logo{font-size:1.05rem;font-weight:900;letter-spacing:.05em;color:#fff;text-decoration:none;cursor:pointer}
+.nav-logo span{color:var(--teal)}
+.nav-back{display:flex;align-items:center;gap:.6rem;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);text-decoration:none;cursor:pointer;transition:gap .32s}
+.nav-back:hover{gap:.9rem}
+.nav-back svg{width:18px;height:10px;transition:transform .32s}
+.nav-back:hover svg{transform:translateX(-4px)}
+
+.proj-hero{min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 5rem;position:relative;overflow:hidden;background:linear-gradient(140deg,#060610 0%,#0c0c18 45%,#09203d 100%)}
+.proj-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 68% 50% at 25% 25%,rgba(78,205,196,.1) 0%,transparent 58%),radial-gradient(ellipse 50% 65% at 75% 75%,rgba(245,166,35,.06) 0%,transparent 58%)}
+.proj-hero::after{content:'';position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.45}
+
+.hero-num{font-size:.6rem;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;position:relative;z-index:1;opacity:0;animation:hDown .8s .1s cubic-bezier(0.16,1,0.3,1) forwards}
+.hero-title{font-size:clamp(2.4rem,6.5vw,4.8rem);font-weight:900;line-height:1.06;max-width:820px;background:linear-gradient(140deg,#fff 0%,#d5f4f2 55%,var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1;opacity:0;animation:hDown .8s .25s cubic-bezier(0.16,1,0.3,1) forwards}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(.95rem,1.8vw,1.25rem);color:rgba(255,255,255,.45);margin-top:1rem;position:relative;z-index:1;opacity:0;animation:hDown .8s .4s cubic-bezier(0.16,1,0.3,1) forwards}
+
+.content{max-width:840px;margin:0 auto;padding:5rem 2rem;animation:pageIn .7s .35s cubic-bezier(0.16,1,0.3,1) both}
+.block{margin-bottom:3.8rem}
+.sec-h{font-size:clamp(1.55rem,3.5vw,2.3rem);font-weight:900;color:#0c0c18;line-height:1.14;margin-bottom:1.35rem}
+.sec-p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,1.85vw,1.2rem);line-height:1.92;color:var(--muted)}
+.sec-p+.sec-p{margin-top:1.1rem}
+.div{width:48px;height:2px;background:linear-gradient(90deg,var(--teal),transparent);border-radius:2px;margin:3.2rem 0}
+.blist{list-style:none;margin-top:1.1rem;display:flex;flex-direction:column;gap:.7rem}
+.blist li{font-family:'Cormorant Garamond',serif;font-size:clamp(1.02rem,1.8vw,1.16rem);color:var(--muted);line-height:1.58;padding-left:1.45rem;position:relative}
+.blist li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--teal);opacity:.75}
+.tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem}
+.tag{font-size:.68rem;font-weight:600;letter-spacing:.07em;padding:.38rem .85rem;border-radius:100px;background:rgba(78,205,196,.09);color:var(--teal);border:1px solid rgba(78,205,196,.18)}
+.callout{background:var(--bg);border-radius:14px;padding:2.4rem;margin:3.5rem 0;position:relative;overflow:hidden}
+.callout::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--teal),transparent)}
+.callout .sec-h{color:#fff}
+.callout .sec-p{color:rgba(255,255,255,.55)}
+.callout .blist li{color:rgba(255,255,255,.6)}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.1rem;margin-top:1.4rem}
+.icard{background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.14);border-radius:11px;padding:1.35rem}
+.icard-t{font-size:.58rem;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin-bottom:.45rem}
+.icard-p{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--muted);line-height:1.6}
+.cblock{border-left:3px solid var(--teal);padding-left:1.45rem;margin-bottom:2.4rem}
+.cblock-h{font-size:1.35rem;font-weight:900;color:#0c0c18;margin-bottom:.7rem}
+
+.proj-footer{background:#060610;border-top:1px solid rgba(255,255,255,.05);padding:3rem 2rem;text-align:center}
+.foot-nav{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.foot-nav a{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);text-decoration:none;cursor:pointer;transition:opacity .28s}
+.foot-nav a:hover{opacity:.65}
+.foot-copy{font-size:.68rem;color:rgba(255,255,255,.2);letter-spacing:.09em}
+.foot-copy strong{color:rgba(255,255,255,.38)}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s cubic-bezier(0.16,1,0.3,1),transform .65s cubic-bezier(0.16,1,0.3,1)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:640px){
+  .content{padding:3rem 1.25rem}
+  .callout{padding:1.7rem}
+  .proj-hero{min-height:48vh}
+}
+
+/* ===== PHOTO SYSTEM ===== */
+.photo-section { margin: 3.5rem 0; }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+.photo-slot {
+  aspect-ratio: 4/3;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(78,205,196,.05);
+  border: 1.5px dashed rgba(78,205,196,.25);
+  cursor: pointer;
+  transition: border-color .3s, background .3s;
+}
+.photo-slot:hover { border-color: rgba(78,205,196,.6); background: rgba(78,205,196,.09); }
+.photo-slot img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s cubic-bezier(0.16,1,0.3,1);
+}
+.photo-slot:hover img { transform: scale(1.04); }
+.photo-slot .photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: .6rem; pointer-events: none;
+}
+.photo-slot .ph-icon {
+  width: 36px; height: 36px; opacity: .35;
+}
+.photo-slot .ph-text {
+  font-size: .65rem; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--teal); opacity: .6;
+}
+.photo-slot input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+.photo-slot .photo-remove {
+  position: absolute; top: .5rem; right: .5rem;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(0,0,0,.65); border: none; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  color: #fff; font-size: .85rem; line-height: 1;
+  transition: background .2s;
+  z-index: 10;
+}
+.photo-slot:hover .photo-remove { display: flex; }
+.photo-slot .photo-remove:hover { background: rgba(200,50,50,.8); }
+
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,.92);
+  display: none; align-items: center; justify-content: center;
+  padding: 2rem;
+  animation: lbIn .25s ease;
+}
+.lightbox.open { display: flex; }
+@keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+.lightbox img {
+  max-width: 90vw; max-height: 88vh;
+  border-radius: 10px;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6);
+  animation: lbImgIn .3s cubic-bezier(0.16,1,0.3,1);
+}
+@keyframes lbImgIn { from { opacity:0; transform:scale(.95); } to { opacity:1; transform:scale(1); } }
+.lightbox-close {
+  position: absolute; top: 1.2rem; right: 1.4rem;
+  font-size: 1.8rem; color: rgba(255,255,255,.6);
+  cursor: pointer; line-height: 1; background: none; border: none;
+  transition: color .2s;
+}
+.lightbox-close:hover { color: #fff; }
+
+/* Upload hint banner */
+.upload-hint {
+  display: flex; align-items: center; gap: .7rem;
+  background: rgba(78,205,196,.07);
+  border: 1px solid rgba(78,205,196,.18);
+  border-radius: 10px; padding: .85rem 1.1rem;
+  margin-bottom: 1.4rem;
+}
+.upload-hint svg { flex-shrink: 0; opacity: .7; }
+.upload-hint p { font-size: .72rem; color: rgba(28,28,44,.75); line-height: 1.5; }
+.upload-hint strong { color: var(--teal); }
+.upload-hint { display: none !important; }
+.photo-slot { border: 1px solid rgba(78,205,196,.2); background: rgba(0,0,0,.18); cursor: pointer; }
+.photo-slot .photo-placeholder,
+.photo-slot input[type="file"],
+.photo-slot .photo-remove { display: none !important; }
+.photo-slot.empty { display: none !important; }
+
+</style>
+</head>
+<body>
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page">
+  <section class="home-hero">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="hero-inner">
+      <p class="h-tag">IBCP &middot; Class 12 &middot; Portfolio</p>
+      <h1 class="h-title">PPS</h1>
+      <p class="h-sub">Personal &amp; Professional Skills</p>
+      <div class="h-div"></div>
+      <p class="h-author">Made by Pravar Golecha</p>
+    </div>
+    <div class="scroll-hint"><span>Explore</span><div class="scroll-line"></div></div>
+  </section>
+
+  <section class="about">
+    <div class="about-inner reveal">
+      <span class="sec-label">About the Subject</span>
+      <h2 class="about-h">What is PPS?</h2>
+      <p class="about-p">Personal and Professional Skills (PPS) is a subject designed to help students develop essential life and career skills alongside academic learning. It focuses on building communication skills, critical thinking, leadership abilities, ethical awareness, teamwork, and personal growth. PPS encourages self-reflection, adaptability, and confidence, preparing students not just for examinations, but for real-world challenges. Through projects, activities, and practical experiences, PPS helps individuals grow into responsible, skilled, and future-ready professionals.</p>
+    </div>
+  </section>
+
+  <section class="projects">
+    <div class="proj-head reveal">
+      <span class="sec-label">Class 12 Journey</span>
+      <h2 class="proj-h">All Projects</h2>
+      <p class="proj-sub">20 activities &mdash; click any card to explore</p>
+    </div>
+    <div class="grid">
+
+    <a href="#atl-skills" class="card reveal" data-page="atl-skills">
+      <span class="c-num">01 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">ATL Skills</h3>
+      <p class="c-desc">From Engines to Empathy &mdash; IB Approaches to Learning represented through the evolution of vehicles.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#swot-analysis" class="card reveal" data-page="swot-analysis">
+      <span class="c-num">02 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">SWOT Analysis Interview</h3>
+      <p class="c-desc">Conducting a real-world SWOT analysis interview with a local food store &mdash; bridging theory and practice.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#stop-child-labour" class="card reveal" data-page="stop-child-labour">
+      <span class="c-num">03 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Stop Child Labour</h3>
+      <p class="c-desc">An awareness initiative highlighting the urgent need to protect children's rights and access to education.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#international-business" class="card reveal" data-page="international-business">
+      <span class="c-num">04 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">International Business Customs</h3>
+      <p class="c-desc">Analyzing workplace cultures across Japan, Germany, Brazil, China and the USA through Chanakya's Niti framework.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#amc-school-visit" class="card reveal" data-page="amc-school-visit">
+      <span class="c-num">05 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">AMC School Visit</h3>
+      <p class="c-desc">Community engagement, empathy, and social responsibility through observing a different educational environment.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#book-review" class="card reveal" data-page="book-review">
+      <span class="c-num">06 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Book Review â€” The Seagull</h3>
+      <p class="c-desc">A reflection on Jonathan Livingston Seagull &mdash; individuality, perseverance, freedom, and self-realization.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#thinking-skills" class="card reveal" data-page="thinking-skills">
+      <span class="c-num">07 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Thinking Skills Activity</h3>
+      <p class="c-desc">Left Brain vs. Right Brain &mdash; exploring how different thinking styles influence learning and decision-making.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#sticky-notes" class="card reveal" data-page="sticky-notes">
+      <span class="c-num">08 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Sticky Notes &amp; Doodling</h3>
+      <p class="c-desc">A simple yet powerful creative routine supporting personal growth and reflective learning.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#gratitude-jars" class="card reveal" data-page="gratitude-jars">
+      <span class="c-num">09 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Gratitude Jars</h3>
+      <p class="c-desc">Emotional awareness and mental well-being explored through the Gratitude Glass Jar Activity in PPS.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#teachers-day" class="card reveal" data-page="teachers-day">
+      <span class="c-num">10 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Teachers Day</h3>
+      <p class="c-desc">Card-making as gratitude &mdash; expressing appreciation through creativity, collaboration, and reflection.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#ibcp-book-santa" class="card reveal" data-page="ibcp-book-santa">
+      <span class="c-num">11 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">IBCP Book Santa</h3>
+      <p class="c-desc">A student-led open library initiative nurturing reading, sharing, and community within school.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#leadership-program" class="card reveal" data-page="leadership-program">
+      <span class="c-num">12 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Leadership Program</h3>
+      <p class="c-desc">A transformative experience exploring leadership through workshops, collaborative challenges, and self-reflection.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#high-court-internship" class="card reveal" data-page="high-court-internship">
+      <span class="c-num">13 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Internship in High Court</h3>
+      <p class="c-desc">An ethics internship at the Gujarat High Court &mdash; connecting legal theory with real-world professional responsibility.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#mindfulness" class="card reveal" data-page="mindfulness">
+      <span class="c-num">14 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Imagination &amp; Mindfulness</h3>
+      <p class="c-desc">Applying mindfulness techniques to navigate conflict, emotional awareness, and personal well-being.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#nzambi-matee" class="card reveal" data-page="nzambi-matee">
+      <span class="c-num">15 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Nzambi Matee &amp; Mission LiFE</h3>
+      <p class="c-desc">Innovation meets sustainability &mdash; Nzambi Matee's plastic bricks in Kenya and India's Mission LiFE initiative.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    <a href="#drama-review" class="card reveal" data-page="drama-review">
+      <span class="c-num">16 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Drama Review</h3>
+      <p class="c-desc">Critical analysis of a theatrical performance &mdash; exploring characterization, staging, and the power of artistic expression.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+
+    <a href="#blogging" class="card reveal" data-page="blogging">
+      <span class="c-num">17 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Blogging</h3>
+      <p class="c-desc">Creative digital expression through blog writing &mdash; building voice, audience awareness, and responsible online communication.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+
+    <a href="#launchpad" class="card reveal" data-page="launchpad">
+      <span class="c-num">18 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Launchpad Pitching Competition</h3>
+      <p class="c-desc">Entrepreneurship meets design &mdash; winning Best Logo and Best Design awards through creative branding and strategic pitching.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+
+    <a href="#crs-conclave" class="card reveal" data-page="crs-conclave">
+      <span class="c-num">19 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">CRS Conclave</h3>
+      <p class="c-desc">Drama, music, and app pitching at an inter-school conclave &mdash; securing 2nd place and runner-up team recognition.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+
+    <a href="#listening-skills" class="card reveal" data-page="listening-skills">
+      <span class="c-num">20 / 20</span>
+      <div class="c-bar"></div>
+      <h3 class="c-title">Listening Skills Activity</h3>
+      <p class="c-desc">Active listening as a foundation for effective communication &mdash; developing empathy, patience, and meaningful connection.</p>
+      <span class="c-cta">View Project <svg viewBox="0 0 28 10" fill="none"><line x1="0" y1="5" x2="24" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="20,1 26,5 20,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg></span>
+    </a>
+    </div>
+  </section>
+
+  <footer class="home-footer">
+    <p>PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP &middot; Personal &amp; Professional Skills</p>
+  </footer>
+</div>
+
+<!-- ===== PROJECT PAGES ===== -->
+
+  <div id="page-atl-skills" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 01 / 20</p>
+  <h1 class="hero-title">ATL Skills</h1>
+  <p class="hero-tagline">From Engines to Empathy: ATL Skills in Motion</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Concept Overview</span>
+    <h2 class="sec-h">From Engines to Empathy</h2>
+    <p class="sec-p">This poster creatively represents the IB Approaches to Learning (ATL) Skills using the evolution of vehicles as a metaphor. Just as vehicles evolved from basic engines to advanced systems, learners develop from foundational research abilities to refined self-management, communication, and social intelligence.</p>
+    <p class="sec-p">The title "From Engines to Empathy" symbolizes the journey from mechanical learning processes to emotionally intelligent, well-rounded growth.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skill 1</span>
+    <h2 class="sec-h">Research Skills</h2>
+    <p class="sec-p">Research skills form the foundation of learning, just like early engines powered the first vehicles.</p>
+    <ul class="blist">
+      <li>Information literacy skills</li>
+      <li>Media literacy skills</li>
+      <li>Ethical use of media and information</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.2rem">These skills help learners gather, evaluate, and responsibly use information. They ensure academic honesty and critical evaluation of sources.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skill 2</span>
+    <h2 class="sec-h">Thinking Skills</h2>
+    <p class="sec-p">Thinking skills represent the intellectual engine that drives deeper understanding and innovation.</p>
+    <ul class="blist">
+      <li>Critical-thinking skills</li>
+      <li>Creative-thinking skills</li>
+      <li>Transfer skills</li>
+      <li>Reflection and metacognitive skills</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.2rem">These skills help learners analyze problems, generate ideas, apply knowledge across contexts, and reflect on their learning processes.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skill 3</span>
+    <h2 class="sec-h">Self-Management Skills</h2>
+    <p class="sec-p">Self-management is like controlling a high-performance vehicle â€” it requires discipline and direction.</p>
+    <ul class="blist">
+      <li>Organization skills</li>
+      <li>Time management</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.2rem">These skills allow learners to manage stress, set goals, meet deadlines, and maintain balance between academic and personal responsibilities.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skill 4</span>
+    <h2 class="sec-h">Social Skills</h2>
+    <p class="sec-p">Social skills symbolize empathy and collaboration â€” essential for meaningful progress.</p>
+    <ul class="blist">
+      <li>Active listening</li>
+      <li>Clear communication</li>
+      <li>Empathy</li>
+      <li>Respecting personal space</li>
+      <li>Eye contact</li>
+      <li>Using polite language</li>
+      <li>Developing positive interpersonal relationships</li>
+      <li>Collaboration skills</li>
+      <li>Social-emotional intelligence</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.2rem">These skills help learners work effectively with others, build respectful relationships, and develop emotional awareness.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skill 5</span>
+    <h2 class="sec-h">Communication Skills</h2>
+    <ul class="blist">
+      <li>Exchanging-information skills</li>
+      <li>Literacy skills</li>
+      <li>ICT skills</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Overall Reflection</h2>
+    <p class="sec-p">The ATL Skills poster demonstrates that learning is not just about acquiring knowledge but about developing a balanced set of transferable skills. Just as vehicles evolved to become smarter and more efficient, learners evolve by mastering research, thinking, communication, social, and self-management skills.</p>
+    <p class="sec-p" style="margin-top:1rem">Together, these skills prepare students to become:</p>
+    <ul class="blist" style="margin-top:1rem">
+      <li>Independent thinkers</li>
+      <li>Ethical decision-makers</li>
+      <li>Effective communicators</li>
+      <li>Responsible global citizens</li>
+    </ul>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="atl-skills-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="atl-skills-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="atl-skills-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#home">Home</a>
+    <a href="#swot-analysis">Next: SWOT Analysis &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-swot-analysis" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 02 / 20</p>
+  <h1 class="hero-title">SWOT Analysis Interview</h1>
+  <p class="hero-tagline">Real-world business analysis â€” bridging strategy with practice</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Activity</h2>
+    <p class="sec-p">Conducting a SWOT analysis interview with a local food store offered practical insight into how businesses evaluate performance and prepare for the future. The experience moved learning beyond textbooks by allowing me to observe how strengths, weaknesses, opportunities, and threats influence daily decision-making. It highlighted the importance of strategic thinking, adaptability, and customer awareness.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Understanding the Business</span>
+    <h2 class="sec-h">What I Learned</h2>
+    <p class="sec-p">Through conversation with the store representatives, I learned how the enterprise maintains its reputation and manages operations. I gained appreciation for the balance required between quality, cost, and service, and how even small businesses rely on structured planning to remain competitive.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Key Findings</span>
+    <h2 class="sec-h">SWOT Analysis Results</h2>
+    <div class="igrid">
+      <div class="icard"><p class="icard-t">Strengths</p><p class="icard-p">Consistent food quality, affordable pricing, and strong relationships with customers.</p></div>
+      <div class="icard"><p class="icard-t">Weaknesses</p><p class="icard-p">Limited physical space and occasional challenges in maintaining steady supplies.</p></div>
+      <div class="icard"><p class="icard-t">Opportunities</p><p class="icard-p">Expanding home delivery, diversifying menu options, and attracting new customer groups.</p></div>
+      <div class="icard"><p class="icard-t">Threats</p><p class="icard-p">Increasing competition and fluctuating raw material costs.</p></div>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">The interview developed my confidence in asking questions, listening actively, and interpreting information from different perspectives. I began to see challenges not as obstacles but as areas for innovation and improvement.</p>
+    <p class="sec-p">This experience strengthened my understanding of entrepreneurship, market positioning, and evidence-based planning. I practiced analytical thinking and learned how data gathered from stakeholders can inform strategies.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">Connection to IB Learner Profile</h2>
+    <div class="tags"><span class="tag">Inquirer</span><span class="tag">Thinker</span><span class="tag">Communicator</span><span class="tag">Open-minded</span><span class="tag">Reflective</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Inquirer &mdash; gathering information to deepen understanding of real-world operations</li>
+      <li>Thinker &mdash; analyzing factors that affect success and sustainability</li>
+      <li>Communicator &mdash; engaging in structured interviews and presenting findings</li>
+      <li>Open-minded &mdash; appreciating the realities faced by small businesses</li>
+      <li>Reflective &mdash; considering how strategies can be improved over time</li>
+    </ul>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">ATL Skills</span>
+    <h2 class="sec-h">Approaches to Learning</h2>
+    <ul class="blist">
+      <li>Research Skills &mdash; collecting, recording, and interpreting primary information</li>
+      <li>Communication Skills &mdash; questioning, listening, and summarizing insights</li>
+      <li>Thinking Skills &mdash; evaluation, problem-solving, and strategic planning</li>
+      <li>Social Skills &mdash; respectful interaction and professional etiquette</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">The SWOT analysis interview demonstrated how structured reflection can guide growth and resilience in business. By understanding internal capabilities and external challenges, organizations can plan effectively for long-term success. The lessons from this experience continue to shape how I approach analysis, collaboration, and decision-making.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="swot-analysis-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="swot-analysis-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="swot-analysis-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#atl-skills">&larr; ATL Skills</a>
+    <a href="#home">Home</a>
+    <a href="#stop-child-labour">Stop Child Labour &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-stop-child-labour" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 03 / 20</p>
+  <h1 class="hero-title">Stop Child Labour</h1>
+  <p class="hero-tagline">Awareness, education, and advocacy for every child's right</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Initiative</h2>
+    <p class="sec-p">The "Stop Child Labour" initiative highlights the urgent need to protect children's rights and ensure access to education, safety, and dignity. Child labour remains a serious global issue that deprives children of their childhood, education, and opportunities for a better future. This project was created to spread awareness about the importance of eliminating child labour and promoting equal opportunities for every child.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Understanding the Issue</span>
+    <h2 class="sec-h">What Is Child Labour?</h2>
+    <p class="sec-p">Child labour refers to the employment of children in work that:</p>
+    <ul class="blist">
+      <li>Is mentally, physically, socially, or morally dangerous</li>
+      <li>Interferes with their schooling</li>
+      <li>Exploits their vulnerability</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.4rem">Children engaged in labour are often deprived of proper education, healthcare, emotional well-being, and safe living conditions.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Purpose</span>
+    <h2 class="sec-h">Purpose of the Initiative</h2>
+    <ul class="blist">
+      <li>To educate people about the harmful effects of child labour</li>
+      <li>To promote the importance of education for all children</li>
+      <li>To encourage responsible citizenship</li>
+      <li>To highlight the need for ethical and sustainable practices</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Key Message</h2>
+    <p class="sec-p">Children belong in schools, not workplaces. Education empowers children with knowledge, confidence, and opportunities. When children are forced into labour, society loses potential innovators, leaders, and contributors. Stopping child labour is not only a legal responsibility but also a moral duty.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">Working on this initiative strengthened my social awareness, empathy, sense of responsibility, and understanding of human rights. It helped me realize that even small awareness efforts can contribute to larger social change.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">Connection to IB Learner Profile</h2>
+    <div class="tags"><span class="tag">Caring</span><span class="tag">Principled</span><span class="tag">Open-minded</span><span class="tag">Reflective</span><span class="tag">Communicator</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Caring &mdash; showing empathy and commitment to others' well-being</li>
+      <li>Principled &mdash; standing up for justice and fairness</li>
+      <li>Open-minded &mdash; understanding social inequalities</li>
+      <li>Reflective &mdash; evaluating my role in creating change</li>
+      <li>Communicator &mdash; spreading awareness effectively</li>
+    </ul>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Conclusion</span>
+    <h2 class="sec-h">Final Reflection</h2>
+    <p class="sec-p">The "Stop Child Labour" initiative reinforced the idea that education and equality are fundamental rights for every child. By raising awareness and promoting ethical responsibility, we can contribute to building a society where every child has the opportunity to learn, grow, and succeed. Even small actions can create meaningful impact.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="stop-child-labour-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="stop-child-labour-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="stop-child-labour-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#swot-analysis">&larr; SWOT Analysis</a>
+    <a href="#home">Home</a>
+    <a href="#international-business">International Business &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-international-business" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 04 / 20</p>
+  <h1 class="hero-title">International Business Customs</h1>
+  <p class="hero-tagline">Cross-cultural workplace analysis through Chanakya's Niti framework</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Study</h2>
+    <p class="sec-p">In today's interconnected global economy, international business operates across diverse cultural landscapes where communication styles, workplace etiquette, and negotiation customs determine success or failure. This activity explores how cultural diversity creates opportunities for innovation and collaboration, communication barriers and misunderstandings, and strategic advantages when managed effectively.</p>
+    <p class="sec-p">Using Chanakya's Niti framework &mdash; Saam, Dam, Dand, and Bhed &mdash; this study analyzes workplace cultures across five major economies.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Framework</span>
+    <h2 class="sec-h">Chanakya's Principles</h2>
+    <div class="igrid">
+      <div class="icard"><p class="icard-t">Saam</p><p class="icard-p">Persuasion and communication</p></div>
+      <div class="icard"><p class="icard-t">Dam</p><p class="icard-p">Incentives and rewards</p></div>
+      <div class="icard"><p class="icard-t">Dand</p><p class="icard-p">Punishment and consequences</p></div>
+      <div class="icard"><p class="icard-t">Bhed</p><p class="icard-p">Strategic division or tactical advantage</p></div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Country Analysis</span>
+    <h2 class="sec-h">Five Business Cultures</h2>
+
+    <div class="cblock">
+      <h3 class="cblock-h">Japan</h3>
+      <p class="sec-p">Japan's business culture is deeply rooted in patience, respect, and consensus-building. The workplace environment is highly hierarchical, with strong emphasis on harmony. Collective responsibility is valued over individual recognition. In negotiations, Japanese professionals prioritize relationship-building before discussing business matters. The ringi system of consensus decision-making ensures proposals are carefully reviewed at multiple levels. Silence during negotiations is interpreted as thoughtful contemplation rather than hesitation. Japan strongly reflects Saam through persuasion built on trust, Dam through status recognition, and Dand through the cultural consequence of losing face.</p>
+    </div>
+
+    <div class="cblock">
+      <h3 class="cblock-h">Germany</h3>
+      <p class="sec-p">Germany's business culture is characterized by precision, structure, and legal clarity. The concept of "Ordnung" (order and structure) shapes workplace expectations, where punctuality, discipline, and clear hierarchy are strictly maintained. Professional life is kept separate from personal relationships. Negotiations are data-driven and based on logical persuasion supported by facts and detailed documentation. Germany exemplifies Saam through logical argumentation, Dam through emphasis on return on investment, and Dand through strong institutional and legal enforcement.</p>
+    </div>
+
+    <div class="cblock">
+      <h3 class="cblock-h">Brazil</h3>
+      <p class="sec-p">Brazil presents a contrasting model, emphasizing relationships and flexibility. The workplace culture is warm and relationship-oriented, where personal connections often blend with professional dealings. Negotiations frequently involve informal meetings, social dinners, and extended relationship-building phases before formal agreements are finalized. Under Chanakya's principles, Brazil reflects Saam through expressive and relational persuasion, Dam through personal recognition and mutual benefit, and Bhed through leveraging strong relational networks. In Brazil, trust precedes transaction.</p>
+    </div>
+
+    <div class="cblock">
+      <h3 class="cblock-h">China</h3>
+      <p class="sec-p">China's business culture is built upon Guanxi, a system of networks based on trust, reciprocity, and long-term obligation. The workplace environment is heavily influenced by Confucian values that prioritize harmony, respect, and loyalty. Negotiations tend to involve indirect communication and prolonged relationship cultivation. China demonstrates Saam through diplomatic and indirect persuasion, Dam through reciprocal favors and access to influential networks, and Dand through the potential loss of relationship and trust. In China, relationships function as the true contracts.</p>
+    </div>
+
+    <div class="cblock">
+      <h3 class="cblock-h">United States</h3>
+      <p class="sec-p">The United States represents a business culture defined by directness and results orientation. The workplace is individualistic and merit-based, with fast decision-making and strong emphasis on performance outcomes. Negotiations are straightforward, characterized by direct communication and rapid progression toward closure. Contracts are detailed and serve as the primary mechanism for establishing trust. The United States reflects Saam through clear and concise persuasion, Dam through financial incentives and performance rewards, and Dand through legal enforcement mechanisms. In American business culture, clarity equals credibility.</p>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Reflection</span>
+    <h2 class="sec-h">Key Insights</h2>
+    <p class="sec-p">Cultural differences are not barriers but variables shaped by history, values, and social structures. Each system is internally consistent and rational within its own context. The real determinant of success in global business is adaptability &mdash; a professional's willingness to understand and adjust to different approaches.</p>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">Cultural intelligence becomes a competitive advantage. Organizations that invest in cross-cultural training, flexible communication styles, and respect for local customs consistently outperform rigid, one-standard approaches. The success of international business does not lie in eliminating cultural differences, but in understanding, respecting, and strategically adapting to them. Cultural intelligence is no longer optional &mdash; it is essential.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="international-business-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="international-business-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="international-business-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#stop-child-labour">&larr; Stop Child Labour</a>
+    <a href="#home">Home</a>
+    <a href="#amc-school-visit">AMC School Visit &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-amc-school-visit" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 05 / 20</p>
+  <h1 class="hero-title">AMC School Visit</h1>
+  <p class="hero-tagline">Community engagement, empathy, and social responsibility</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Reflection</span>
+    <h2 class="sec-h">About the Visit</h2>
+    <p class="sec-p">The visit to AMC School was conducted as part of the Personal and Professional Skills (PPS) programme to help students understand the importance of community engagement, empathy, and social responsibility. The purpose of this activity was not only to observe a different educational environment but also to reflect on the roles individuals play in shaping a positive learning community.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Observation</span>
+    <h2 class="sec-h">What We Observed</h2>
+    <p class="sec-p">During the visit, we observed how teachers at AMC School maintained discipline while fostering a supportive and inclusive atmosphere. Their interactions with students reflected patience, creativity, and genuine care, highlighting that education extends beyond academic instruction. This aligns with PPS concepts such as ethical awareness, effective communication, and respect for others.</p>
+    <p class="sec-p">The welcoming environment of the school demonstrated the importance of emotional safety in education. Students were actively engaged in learning, and teachers ensured that every child felt included. This observation directly connects to PPS themes of collaboration, well-being, and interpersonal skills.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Special Activity</span>
+    <h2 class="sec-h">Gratitude Jars for Teachers</h2>
+    <p class="sec-p">A significant part of the activity involved presenting gratitude jars to the teachers as a symbol of appreciation for their continuous efforts. This act reinforced the PPS value of gratitude and ethical responsibility, reminding us that recognizing the contributions of others is essential in any community. The positive reactions from the teachers highlighted how small gestures can strengthen relationships and create meaningful emotional connections.</p>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Overall Reflection</h2>
+    <p class="sec-p">The AMC School visit helped illustrate how schools function as communities built on teamwork, empathy, and shared effort. Through this activity, PPS learning outcomes such as community engagement, social awareness, and reflective thinking were clearly demonstrated, making the experience both educational and impactful.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">PPS Learning Outcomes</span>
+    <h2 class="sec-h">What I Gained</h2>
+    <ul class="blist">
+      <li>Ethical awareness and respect for others</li>
+      <li>Effective communication in social contexts</li>
+      <li>Collaboration and interpersonal skills</li>
+      <li>Community engagement and social awareness</li>
+      <li>Gratitude and ethical responsibility</li>
+      <li>Reflective thinking and personal growth</li>
+    </ul>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="amc-school-visit-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="amc-school-visit-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="amc-school-visit-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#international-business">&larr; International Business</a>
+    <a href="#home">Home</a>
+    <a href="#book-review">Book Review &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-book-review" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 06 / 20</p>
+  <h1 class="hero-title">Book Review â€” The Seagull</h1>
+  <p class="hero-tagline">Jonathan Livingston Seagull â€” individuality, perseverance, and self-realization</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Reflection</span>
+    <h2 class="sec-h">About the Book</h2>
+    <p class="sec-p">Jonathan Livingston Seagull is a philosophical novella that tells the inspiring story of a seagull who dares to be different. Unlike other seagulls that focus only on finding food and surviving, Jonathan is passionate about flying. For him, flight is not merely a means of survival but an art, a science, and a path to self-discovery. His desire to perfect his flying skills sets him apart from his flock and ultimately leads to his exile.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Themes</span>
+    <h2 class="sec-h">Core Themes</h2>
+    <ul class="blist">
+      <li>Individuality &mdash; daring to be different</li>
+      <li>Perseverance &mdash; continuing despite rejection</li>
+      <li>Freedom &mdash; breaking from societal expectations</li>
+      <li>Self-realization &mdash; discovering one's true potential</li>
+    </ul>
+    <p class="sec-p" style="margin-top:1.2rem">Jonathan's journey symbolizes the struggle of anyone who chooses to follow their dreams despite criticism or rejection from society. Even after being cast out, he continues to practice, improve, and push beyond his limits.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Analysis</span>
+    <h2 class="sec-h">Literary Perspective</h2>
+    <p class="sec-p">Richard Bach uses simple language yet conveys deep philosophical ideas. The story encourages readers to break free from limiting beliefs and societal expectations. It emphasizes that true success is not measured by material achievement but by personal growth and inner fulfillment. Jonathan's transformation from an outcast to a mentor further highlights the importance of sharing knowledge and uplifting others.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Evaluation</span>
+    <h2 class="sec-h">Strengths &amp; Limitations</h2>
+    <div class="igrid">
+      <div class="icard"><p class="icard-t">Strengths</p><p class="icard-p">Powerful motivational message. Inspires readers to pursue excellence, embrace uniqueness, and view challenges as opportunities for improvement.</p></div>
+      <div class="icard"><p class="icard-t">Limitations</p><p class="icard-p">Some readers may find the narrative abstract or overly idealistic, as it focuses more on philosophy than on complex plot development.</p></div>
+    </div>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Final Reflection</h2>
+    <p class="sec-p">Jonathan Livingston Seagull is a powerful and uplifting read. It reminds us that limitations are often self-imposed and that courage, discipline, and belief in our abilities can help us rise above mediocrity. The novella leaves readers with a lasting message: the purpose of life is to learn, grow, and help others do the same.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="book-review-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="book-review-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="book-review-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#amc-school-visit">&larr; AMC School Visit</a>
+    <a href="#home">Home</a>
+    <a href="#thinking-skills">Thinking Skills &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-thinking-skills" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 07 / 20</p>
+  <h1 class="hero-title">Thinking Skills Activity</h1>
+  <p class="hero-tagline">Left Brain vs. Right Brain &mdash; exploring cognitive diversity</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Introduction</span>
+    <h2 class="sec-h">About the Activity</h2>
+    <p class="sec-p">The "Left Brain vs. Right Brain" activity explores how different thinking styles influence learning, creativity, and decision-making. This concept &mdash; known scientifically as brain lateralization &mdash; helps us understand how logical reasoning and creative imagination complement each other. Both hemispheres of the brain work together to shape how we think, learn, and solve problems.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Right Hemisphere</span>
+    <h2 class="sec-h">The Right Side &mdash; Creativity &amp; Emotion</h2>
+    <p class="sec-p">The right hemisphere of the brain is commonly associated with creativity, imagination, and emotional expression. It supports intuitive thinking and open-ended exploration of ideas.</p>
+    <ul class="blist">
+      <li>Artistic expression and music</li>
+      <li>Visual and spatial awareness</li>
+      <li>Emotional understanding</li>
+      <li>Imagination and storytelling</li>
+      <li>Creative problem-solving</li>
+    </ul>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Left Hemisphere</span>
+    <h2 class="sec-h">The Left Side &mdash; Logic &amp; Structure</h2>
+    <p class="sec-p">The left hemisphere is associated with analytical thinking, structure, and logic. It focuses on reasoning, language, and step-by-step problem-solving.</p>
+    <ul class="blist">
+      <li>Logical reasoning</li>
+      <li>Language and grammar</li>
+      <li>Analytical thinking</li>
+      <li>Rational decision-making</li>
+      <li>Understanding rules and structure</li>
+      <li>Critical thinking</li>
+    </ul>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Q&amp;A</span>
+    <h2 class="sec-h">Key Questions Explored</h2>
+
+    <div style="margin-bottom:2rem">
+      <h3 style="font-size:1.05rem;font-weight:700;color:#0c0c18;margin-bottom:.7rem">Are the two sides of the brain actually responsible for different functions?</h3>
+      <p class="sec-p">Yes, research in neuroscience shows that certain cognitive functions are more dominant in one hemisphere &mdash; a concept known as lateralization. However, both sides constantly communicate through the corpus callosum. Most tasks require coordination between both hemispheres.</p>
+    </div>
+
+    <div style="margin-bottom:2rem">
+      <h3 style="font-size:1.05rem;font-weight:700;color:#0c0c18;margin-bottom:.7rem">Is one side of our brain dominant over the other?</h3>
+      <p class="sec-p">Neuroscience suggests that no one uses only one side. Everyone relies on both hemispheres for daily activities. Individuals may show preferences in thinking style, but these are tendencies rather than strict divisions.</p>
+    </div>
+
+    <div style="margin-bottom:2rem">
+      <h3 style="font-size:1.05rem;font-weight:700;color:#0c0c18;margin-bottom:.7rem">What are the benefits of describing people as left-brained or right-brained?</h3>
+      <ul class="blist">
+        <li>Increase self-awareness</li>
+        <li>Build confidence in personal abilities</li>
+        <li>Support differentiated learning strategies</li>
+        <li>Encourage appreciation for diverse thinking styles</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 style="font-size:1.05rem;font-weight:700;color:#0c0c18;margin-bottom:.7rem">What problems might this description present?</h3>
+      <p class="sec-p">The main limitation is that it oversimplifies how the brain functions. Labeling individuals strictly as "logical" or "creative" can limit personal growth, create stereotypes, and misrepresent scientific understanding. In reality, abilities such as creativity, reasoning, and emotional intelligence rely on integrated brain activity.</p>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Personal Reflection</span>
+    <h2 class="sec-h">My Skills and Strengths</h2>
+    <p class="sec-p">Through this activity, I realized that I use both logical and creative thinking in my daily life. On the analytical side, I am organized, structured, and comfortable working step-by-step through tasks. At the same time, I value creativity and imagination. Balancing both sides of thinking strengthens my adaptability, teamwork, and problem-solving abilities.</p>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Key Takeaway</h2>
+    <p class="sec-p">The most effective thinkers are not purely analytical or purely creative. True intellectual strength lies in the integration of logic and creativity. When analytical reasoning and imaginative thinking work together, individuals can achieve deeper understanding, better decisions, and more innovative solutions.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="thinking-skills-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="thinking-skills-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="thinking-skills-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#book-review">&larr; Book Review</a>
+    <a href="#home">Home</a>
+    <a href="#sticky-notes">Sticky Notes &amp; Doodling &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-sticky-notes" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 08 / 20</p>
+  <h1 class="hero-title">Sticky Notes &amp; Doodling Activity</h1>
+  <p class="hero-tagline">Creative reflection as a pathway to personal growth</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Activity</h2>
+    <p class="sec-p">The sticky note and doodling activity became a simple yet powerful routine that supported both my personal growth and my development as a learner. By capturing short ideas, quick questions, and visual representations of my feelings, I created a safe, low-pressure space to think. What started as small marks on paper gradually evolved into meaningful insights about how I learn, reflect, and express myself.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">My Process</span>
+    <h2 class="sec-h">How I Used It</h2>
+    <p class="sec-p">I used sticky notes to record key thoughts, reminders, and emerging understandings. Doodles allowed me to represent emotions, connections, and patterns that were sometimes difficult to put into words. Because each note was small and informal, I felt free to experiment, take risks, and revise my thinking. Over time, I began grouping notes, identifying themes, and turning scattered ideas into structured reflections.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Impact</span>
+    <h2 class="sec-h">Impact on Professional &amp; Academic Development</h2>
+    <p class="sec-p">The strategy also influenced the way I approach learning tasks and collaboration. I became more focused, organized, and willing to share my ideas. Quick visual notes helped me prepare for discussions, plan projects, and track progress. The routine encouraged independence, responsibility, and a habit of continuous reflection.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">Connection to the IB Learner Profile</h2>
+    <div class="tags"><span class="tag">Thinker</span><span class="tag">Reflective</span><span class="tag">Risk-taker</span><span class="tag">Communicator</span><span class="tag">Balanced</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Thinker &mdash; analyzed experiences and experimented with different ways to represent understanding</li>
+      <li>Reflective &mdash; regularly reviewed thoughts and considered how to improve</li>
+      <li>Risk-taker &mdash; the informal format allowed trying new ideas without fear of failure</li>
+      <li>Communicator &mdash; visual and written notes helped express complex feelings more clearly</li>
+      <li>Balanced &mdash; creative reflection supported emotional well-being alongside academic progress</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">This activity showed me that reflection does not always need to be formal to be powerful. Small, consistent moments of creativity can lead to significant development in confidence, clarity of thought, and personal expression. The habits I built through this practice continue to influence how I learn, collaborate, and grow.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="sticky-notes-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="sticky-notes-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="sticky-notes-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#thinking-skills">&larr; Thinking Skills</a>
+    <a href="#home">Home</a>
+    <a href="#gratitude-jars">Gratitude Jars &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-gratitude-jars" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 09 / 20</p>
+  <h1 class="hero-title">Gratitude Jars</h1>
+  <p class="hero-tagline">Emotional awareness and the sustainability of mental well-being</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Reflection</span>
+    <h2 class="sec-h">About the Activity</h2>
+    <p class="sec-p">As part of our Personal and Professional Skills (PPS) and Service Learning classes, we participated in the Gratitude Glass Jar Activity, which helped us understand emotional awareness and sustainability of mental well-being. In this activity, the glass jar symbolized our mind and thinking processes, while the objects placed inside represented different emotional states we experience in daily life.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Positive Emotions</span>
+    <h2 class="sec-h">A Balanced Jar</h2>
+    <p class="sec-p">When we added positive emotions such as happiness, calmness, gratitude, and confidence into the jar, it appeared balanced and visually pleasing. This demonstrated how positive emotions contribute to emotional stability and a healthy mindset. Pleasant experiences and positive thinking play a vital role in maintaining inner peace and improving our ability to learn, collaborate, and perform effectively.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Negative Emotions</span>
+    <h2 class="sec-h">An Overcrowded Jar</h2>
+    <p class="sec-p">In contrast, when negative emotions such as stress, anger, pressure, and sadness were added, the jar appeared overcrowded and disorganized. This represented how excessive negative emotions can overwhelm the mind and disturb emotional balance. Through this visual and hands-on experience, we understood how unmanaged emotions can affect decision-making, focus, and overall well-being.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">PPS Connection</span>
+    <h2 class="sec-h">Emotional Management</h2>
+    <p class="sec-p">The activity emphasized the importance of emotional management and self-reflection, both of which are key components of PPS. It encouraged us to recognize our emotions, understand their impact, and consciously work towards developing positive emotional habits. Maintaining emotional balance is essential not only for personal happiness but also for long-term personal and academic growth.</p>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Overall Takeaway</h2>
+    <p class="sec-p">The Gratitude Jar activity provided a simple yet powerful model to understand how emotional awareness and positivity can enhance our mental resilience, learning capacity, and ability to contribute meaningfully to our community.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="gratitude-jars-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="gratitude-jars-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="gratitude-jars-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#sticky-notes">&larr; Sticky Notes &amp; Doodling</a>
+    <a href="#home">Home</a>
+    <a href="#teachers-day">Teachers Day &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-teachers-day" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 10 / 20</p>
+  <h1 class="hero-title">Teachers Day</h1>
+  <p class="hero-tagline">Gratitude, creativity, and community &mdash; celebrating those who shape us</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Activity</h2>
+    <p class="sec-p">The Teachers' Day card-making activity was a joyful and meaningful opportunity to express gratitude while strengthening important learning skills. By designing personalized cards filled with colorful artwork and heartfelt messages, we celebrated the role teachers play in shaping our growth, confidence, and curiosity. The experience blended creativity, collaboration, and reflection into a memorable moment of appreciation.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">My Process</span>
+    <h2 class="sec-h">How We Did It</h2>
+    <p class="sec-p">As a group, we brainstormed ideas, discussed themes, and divided responsibilities. Some of us focused on illustrations, others on writing messages, and many supported both. Throughout the process, we exchanged feedback, solved small challenges, and ensured that every card communicated respect and thankfulness. Working together helped us stay organized and encouraged everyone to contribute their strengths.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">Creating the cards helped me better understand the importance of gratitude and empathy. I reflected on how my teachers guide me academically and personally, and I became more aware of the value of acknowledging their efforts. Sharing appreciation openly built my confidence and strengthened my ability to express positive emotions.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Professional Development</span>
+    <h2 class="sec-h">Academic &amp; Professional Skills</h2>
+    <p class="sec-p">The activity strengthened collaboration, planning, and time management. I practiced communicating ideas clearly, listening to others, and adapting when needed. These are essential skills not only in school projects but also in future professional environments where teamwork and respect are highly valued.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+    <div class="tags"><span class="tag">Communicator</span><span class="tag">Caring</span><span class="tag">Principled</span><span class="tag">Open-minded</span><span class="tag">Balanced</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Communicator &mdash; expressed appreciation through thoughtful words and visual design</li>
+      <li>Caring &mdash; the cards were created with genuine gratitude and respect for our teachers' dedication</li>
+      <li>Principled &mdash; recognized the importance of acknowledging the contributions of others</li>
+      <li>Open-minded &mdash; welcomed different artistic ideas and perspectives within the group</li>
+      <li>Balanced &mdash; the event combined creativity, emotion, and community building</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">The most powerful moment of the celebration was seeing the happiness and appreciation on our teachers' faces as they received the cards. It reminded me that even small gestures can create a lasting impact. Beyond the artwork, the experience became a lesson in gratitude, teamwork, and community.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="teachers-day-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="teachers-day-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="teachers-day-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#gratitude-jars">&larr; Gratitude Jars</a>
+    <a href="#home">Home</a>
+    <a href="#ibcp-book-santa">IBCP Book Santa &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-ibcp-book-santa" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 11 / 20</p>
+  <h1 class="hero-title">IBCP Book Santa</h1>
+  <p class="hero-tagline">A student-led open library nurturing reading, sharing, and community</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Initiative</h2>
+    <p class="sec-p">The IBCP Book Santa initiative marked a meaningful effort by Grade 12 IBCP students to nurture a culture of reading, sharing, and community within the school. By creating an open library system, we aimed to make books easily accessible while encouraging every learner to both give and receive. What began as a small idea developed into a sustainable platform that continues to inspire curiosity and collaboration.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">The System</span>
+    <h2 class="sec-h">How It Works</h2>
+    <p class="sec-p">A diverse collection of books was gathered, sorted, and placed in a dedicated cupboard that now functions as our open library. The guiding principle &mdash; "take one book and leave one book" &mdash; ensures that the collection remains dynamic and community-driven. Each contribution helps the library grow while allowing students to discover new genres, authors, and perspectives.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">My Experience</span>
+    <h2 class="sec-h">My Role and Experience</h2>
+    <p class="sec-p">Participating in this initiative allowed me to engage in planning, organizing, and promoting the project. I supported the arrangement of books, helped communicate the purpose of the library to peers, and encouraged others to donate. Seeing fellow students browse the shelves and exchange recommendations made the effort deeply rewarding.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">Book Santa strengthened my appreciation for service and responsibility. I realized that leadership can be expressed through small, consistent actions that benefit others. The initiative also reinforced empathy, as I considered what kinds of books might inspire or support different readers.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+    <div class="tags"><span class="tag">Caring</span><span class="tag">Communicator</span><span class="tag">Principled</span><span class="tag">Open-minded</span><span class="tag">Inquirer</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Caring &mdash; worked to create opportunities that benefit the whole school community</li>
+      <li>Communicator &mdash; shared the vision of the project and encouraged participation</li>
+      <li>Principled &mdash; the exchange system relied on honesty and mutual respect</li>
+      <li>Open-minded &mdash; readers explored unfamiliar genres and viewpoints</li>
+      <li>Inquirer &mdash; access to varied books sparked curiosity and independent learning</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">The IBCP Book Santa Open Library demonstrates how a simple idea can create lasting impact. By making reading materials available and inviting everyone to contribute, the initiative continues to strengthen our sense of connection and shared ownership. It is a proud example of student-led action that supports literacy, sustainability, and lifelong learning.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="ibcp-book-santa-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="ibcp-book-santa-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="ibcp-book-santa-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#teachers-day">&larr; Teachers Day</a>
+    <a href="#home">Home</a>
+    <a href="#leadership-program">Leadership Program &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-leadership-program" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 12 / 20</p>
+  <h1 class="hero-title">Leadership Program</h1>
+  <p class="hero-tagline">Influence, responsibility, and service &mdash; redefining what it means to lead</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Program</h2>
+    <p class="sec-p">The leadership program was a transformative experience that deepened my understanding of what it truly means to lead. Through interactive workshops, discussions, and collaborative challenges, I explored how leadership is not only about holding a position but about influence, responsibility, and service in everyday actions.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Key Learning</span>
+    <h2 class="sec-h">Learning the Meaning of Leadership</h2>
+    <p class="sec-p">Throughout the sessions, we examined key qualities of effective leaders, including communication, teamwork, integrity, empathy, and decision-making. I learned that strong leadership comes from leading by example, listening actively, and valuing diverse perspectives. These conversations reshaped my view of leadership from authority to positive impact.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">My Experience</span>
+    <h2 class="sec-h">My Growth and Experience</h2>
+    <p class="sec-p">By participating in group activities, I stepped outside my comfort zone, contributed ideas, and supported others. I practiced taking initiative while also learning when to follow and collaborate. Each task strengthened my confidence and helped me recognize my ability to guide, motivate, and cooperate with peers.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Personal Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">The program encouraged self-awareness and reflection. I began to understand my strengths and areas for improvement, especially in communication and adaptability. Developing a growth mindset allowed me to approach challenges with resilience and optimism.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+    <div class="tags"><span class="tag">Communicator</span><span class="tag">Principled</span><span class="tag">Risk-taker</span><span class="tag">Reflective</span><span class="tag">Caring</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Communicator &mdash; expressing ideas confidently and listening to others</li>
+      <li>Principled &mdash; acting with integrity and fairness in group situations</li>
+      <li>Risk-taker &mdash; contributing new ideas and embracing unfamiliar roles</li>
+      <li>Reflective &mdash; evaluating performance and seeking improvement</li>
+      <li>Caring &mdash; supporting peers and valuing teamwork</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">Overall, the leadership program strengthened my confidence, interpersonal effectiveness, and commitment to positive action. It reinforced that leadership is a continuous journey of learning, serving, and improving. The lessons I gained continue to shape how I contribute to my school community and prepare me to become a responsible and impactful leader in the future.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="leadership-program-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="leadership-program-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="leadership-program-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#ibcp-book-santa">&larr; IBCP Book Santa</a>
+    <a href="#home">Home</a>
+    <a href="#high-court-internship">High Court Internship &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-high-court-internship" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 13 / 20</p>
+  <h1 class="hero-title">Internship in High Court</h1>
+  <p class="hero-tagline">Ethics, justice, and professional responsibility at the Gujarat High Court</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Internship</h2>
+    <p class="sec-p">The ethics internship at the Gujarat High Court was an enriching exposure to the practical world of law, justice, and professional responsibility. Observing legal processes within a real judicial environment allowed me to connect theoretical ideas about ethics with their application in society. The visit deepened my respect for institutions that safeguard fairness and reinforced the importance of principled action.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Legal System</span>
+    <h2 class="sec-h">Understanding the Legal System</h2>
+    <p class="sec-p">During the internship, I was introduced to the structure of the courts, the flow of proceedings, and the roles played by judges, lawyers, and court officials. Witnessing procedures firsthand helped me understand how laws move from written principles to lived realities. I began to appreciate the complexity of decision-making and the careful balance required to uphold justice.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Ethics in Practice</span>
+    <h2 class="sec-h">Ethics in Practice</h2>
+    <p class="sec-p">A central takeaway from the experience was the importance of integrity, accountability, and impartiality in the legal profession. Discussions around professional conduct highlighted how ethical choices influence not only individual cases but also public trust in the system. I recognized that ethical awareness is essential in every career, especially those connected to public service.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Personal Impact</span>
+    <h2 class="sec-h">Impact on Personal Growth</h2>
+    <p class="sec-p">The internship strengthened my sense of civic awareness and responsibility. It encouraged me to think critically about fairness, rights, and duties within a community. I became more mindful of how rules and ethical behavior contribute to stability and equality.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+    <div class="tags"><span class="tag">Principled</span><span class="tag">Thinker</span><span class="tag">Inquirer</span><span class="tag">Communicator</span><span class="tag">Reflective</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Principled &mdash; recognizing the value of honesty, justice, and responsibility</li>
+      <li>Thinker &mdash; analyzing how legal systems address complex societal issues</li>
+      <li>Inquirer &mdash; developing curiosity about rights, governance, and civic structures</li>
+      <li>Communicator &mdash; observing formal dialogue and professional interaction</li>
+      <li>Reflective &mdash; considering how ethical awareness shapes my own actions</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">The ethics internship at the Gujarat High Court demonstrated how justice depends on both knowledge and moral responsibility. It was a powerful reminder that professionalism is grounded in integrity and service to the community. The insights I gained continue to influence how I approach decisions, responsibilities, and my role as an informed global citizen.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="high-court-internship-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="high-court-internship-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="high-court-internship-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#leadership-program">&larr; Leadership Program</a>
+    <a href="#home">Home</a>
+    <a href="#mindfulness">Mindfulness &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-mindfulness" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 14 / 20</p>
+  <h1 class="hero-title">Imagination &amp; Mindfulness</h1>
+  <p class="hero-tagline">Applying mindfulness to navigate conflict, emotions, and personal growth</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Personal Reflection</span>
+    <h2 class="sec-h">A Real-Life Experience</h2>
+    <p class="sec-p">A few months ago, I had a fight with a good friend that made me feel bad. It started with a small misunderstanding in a text message and became a big, emotional argument. I felt stressed and my thoughts raced &mdash; I kept replaying the fight, imagining the worst, and blaming myself.</p>
+    <p class="sec-p">Usually, I would have reacted quickly: sent an angry message, over-explained myself, or avoided my friend. But this time, I stopped. I remembered mindfulness, something I had been practicing.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">The Practice</span>
+    <h2 class="sec-h">Applying the Technique</h2>
+    <p class="sec-p">I sat down, closed my eyes, and took deep breaths. I focused on how my body felt &mdash; the tension in my jaw, the heat in my eyes, my fast heartbeat. I did not try to change anything. I just noticed. I told myself: this feeling will pass.</p>
+    <p class="sec-p">Instead of thinking about the fight, I focused on my breath, counting each inhale and exhale slowly. When thoughts popped up, I gently brought my attention back to my breath. After ten minutes, I felt calmer.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">The Outcome</span>
+    <h2 class="sec-h">How It Helped</h2>
+    <p class="sec-p">With that calm, I saw the situation differently. I realized my friend's reaction came from their own issues, not just because of me. I still felt hurt, but it did not consume me. Later that day, I contacted my friend to listen and honestly share my feelings, without blaming them.</p>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Key Learning</h2>
+    <p class="sec-p">Mindfulness did not solve the fight, but it helped me stay calm and approach it with kindness. It showed me that mindfulness is not about ignoring emotions &mdash; it is about allowing emotions without letting them control me. This experience demonstrated the power of pausing before reacting.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">The Steps</span>
+    <h2 class="sec-h">The Mindfulness Technique</h2>
+    <ul class="blist">
+      <li>Pause &mdash; stop before reacting impulsively</li>
+      <li>Breathe &mdash; take slow, deep breaths to calm the nervous system</li>
+      <li>Notice &mdash; observe physical sensations without judgment</li>
+      <li>Refocus &mdash; bring attention back to the breath when thoughts arise</li>
+      <li>Reflect &mdash; use the resulting clarity to understand the situation</li>
+      <li>Respond &mdash; engage with others from a place of calm and empathy</li>
+    </ul>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="mindfulness-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="mindfulness-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="mindfulness-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#high-court-internship">&larr; High Court Internship</a>
+    <a href="#home">Home</a>
+    <a href="#nzambi-matee">Nzambi Matee &amp; Mission LiFE &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+  <div id="page-nzambi-matee" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 15 / 20</p>
+  <h1 class="hero-title">Nzambi Matee &amp; Mission LiFE</h1>
+  <p class="hero-tagline">Innovation meets sustainability &mdash; driving environmental change through everyday action</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+    <span class="sec-label">Overview</span>
+    <h2 class="sec-h">About the Study</h2>
+    <p class="sec-p">Learning about the work of Nzambi Matee in Kenya and the Government of India's Mission LiFE initiative expanded my understanding of how innovation and everyday choices can shape a more sustainable future. Both examples demonstrate that environmental protection is not limited to large policies; it also depends on creative thinking, responsible habits, and community participation.</p>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="block reveal">
+    <span class="sec-label">Case Study 1</span>
+    <h2 class="sec-h">Inspiration from Nzambi Matee</h2>
+    <p class="sec-p">Nzambi Matee, founder of Gjenge Makers, has pioneered a practical solution to plastic pollution by transforming discarded waste into durable and affordable construction bricks. Her approach reduces landfill pressure, promotes recycling, and creates employment opportunities. What inspires me most is the way scientific curiosity, entrepreneurship, and social responsibility come together to create measurable impact.</p>
+    <div class="igrid">
+      <div class="icard"><p class="icard-t">Innovation</p><p class="icard-p">Plastic waste transformed into construction bricks &mdash; durable, affordable, and eco-friendly.</p></div>
+      <div class="icard"><p class="icard-t">Social Impact</p><p class="icard-p">Creates employment opportunities while solving Kenya's plastic pollution crisis.</p></div>
+      <div class="icard"><p class="icard-t">Environment</p><p class="icard-p">Reduces landfill pressure and promotes community-level recycling behavior.</p></div>
+    </div>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Case Study 2</span>
+    <h2 class="sec-h">Understanding Mission LiFE</h2>
+    <p class="sec-p">Mission LiFE (Lifestyle for Environment), launched by the Government of India, encourages individuals and communities to adopt environmentally conscious behaviors. From reducing waste to conserving water and energy, the movement emphasizes that small daily actions, when multiplied across millions of people, can lead to powerful change.</p>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">Shared Values</span>
+    <h2 class="sec-h">Lessons from Both Initiatives</h2>
+    <ul class="blist">
+      <li>Innovation &mdash; using creativity to solve environmental challenges</li>
+      <li>Collaboration &mdash; working across communities and governments</li>
+      <li>Proactive citizenship &mdash; taking responsibility for one's environmental footprint</li>
+      <li>Scalability &mdash; small actions multiplied create transformative change</li>
+    </ul>
+  </div>
+
+  <div class="block reveal">
+    <span class="sec-label">IB Connection</span>
+    <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+    <div class="tags"><span class="tag">Caring</span><span class="tag">Thinker</span><span class="tag">Principled</span><span class="tag">Inquirer</span><span class="tag">Risk-taker</span></div>
+    <ul class="blist" style="margin-top:1.5rem">
+      <li>Caring &mdash; demonstrating commitment to environmental stewardship</li>
+      <li>Thinker &mdash; applying innovation to solve real-world problems</li>
+      <li>Principled &mdash; acting responsibly toward present and future generations</li>
+      <li>Inquirer &mdash; seeking new methods to promote sustainability</li>
+      <li>Risk-taker &mdash; pursuing bold ideas that challenge traditional approaches</li>
+    </ul>
+  </div>
+
+  <div class="callout reveal">
+    <h2 class="sec-h">Conclusion</h2>
+    <p class="sec-p">The work of Nzambi Matee and the vision behind Mission LiFE remind me that meaningful progress is possible when innovation meets responsibility. Their examples inspire me to act thoughtfully, collaborate widely, and contribute to building a future where development and environmental care go hand in hand.</p>
+  </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="nzambi-matee-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="nzambi-matee-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="nzambi-matee-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#mindfulness">&larr; Imagination &amp; Mindfulness</a>
+    <a href="#home">Home</a>
+    <a href="#drama-review">Drama Review &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+  <div id="page-drama-review" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 16 / 20</p>
+      <h1 class="hero-title">Drama Review</h1>
+      <p class="hero-tagline">Critical observation, analysis, and appreciation of theatrical performance</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+        <span class="sec-label">Overview</span>
+        <h2 class="sec-h">About the Activity</h2>
+        <p class="sec-p">The Drama Review activity was an enriching experience that allowed me to critically analyze a theatrical performance while appreciating its artistic elements. Through observation and reflection, I explored how drama combines dialogue, expression, staging, and emotion to communicate powerful messages. This activity strengthened both my analytical thinking and creative interpretation skills.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">Elements of Drama</span>
+        <h2 class="sec-h">Understanding the Craft</h2>
+        <p class="sec-p">While reviewing the performance, I examined key aspects such as characterization, plot development, themes, dialogue delivery, stage design, and audience engagement. I learned how actors use voice modulation, body language, and timing to convey emotions effectively. Analyzing these elements helped me understand how every detail contributes to the overall impact of a production.</p>
+      </div>
+      <div class="div"></div>
+      <div class="block reveal">
+        <span class="sec-label">My Growth</span>
+        <h2 class="sec-h">What I Gained</h2>
+        <p class="sec-p">Writing the review encouraged me to think critically and express my opinions clearly. I learned to support my views with specific examples from the performance rather than making general statements. This process improved my ability to observe carefully, interpret meaning, and communicate insights in a structured manner.</p>
+        <p class="sec-p">The activity enhanced my appreciation for the performing arts and developed my confidence in sharing thoughtful critiques. It encouraged open-mindedness and helped me understand diverse perspectives in storytelling and performance.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">IB Connection</span>
+        <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+        <div class="tags"><span class="tag">Communicator</span><span class="tag">Thinker</span><span class="tag">Open-minded</span><span class="tag">Reflective</span><span class="tag">Inquirer</span></div>
+        <ul class="blist" style="margin-top:1.5rem">
+          <li>Communicator &mdash; expressing ideas clearly in written form</li>
+          <li>Thinker &mdash; analyzing themes and artistic choices critically</li>
+          <li>Open-minded &mdash; appreciating different interpretations and styles</li>
+          <li>Reflective &mdash; evaluating the performance thoughtfully</li>
+          <li>Inquirer &mdash; exploring deeper meanings behind the drama</li>
+        </ul>
+      </div>
+      <div class="callout reveal">
+        <h2 class="sec-h">Conclusion</h2>
+        <p class="sec-p">Overall, the Drama Review activity strengthened my ability to analyze creative work with clarity and depth. It enhanced my critical thinking, communication skills, and appreciation for artistic expression, contributing positively to both my academic and personal growth.</p>
+      </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="drama-review-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="drama-review-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="drama-review-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#nzambi-matee">&larr; Nzambi Matee &amp; Mission LiFE</a>
+        <a href="#home">Home</a>
+        <a href="#blogging">Blogging &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+  <div id="page-blogging" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 17 / 20</p>
+      <h1 class="hero-title">Blogging</h1>
+      <p class="hero-tagline">Creative voice, digital confidence, and responsible online communication</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+        <span class="sec-label">Overview</span>
+        <h2 class="sec-h">About the Activity</h2>
+        <p class="sec-p">The Blogging activity provided an opportunity to express ideas creatively while engaging with a wider audience. Through writing and publishing blog posts, I learned how digital platforms can be powerful tools for communication, reflection, and knowledge sharing. The experience encouraged creativity, clarity, and responsible digital participation.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">The Craft</span>
+        <h2 class="sec-h">Understanding the Art of Blogging</h2>
+        <p class="sec-p">Blogging requires more than just writing &mdash; it involves structuring content, selecting appropriate tone, engaging readers, and presenting ideas in an appealing format. I learned how to craft attention-grabbing introductions, organize paragraphs effectively, and conclude with meaningful reflections. The process also emphasized the importance of authenticity and originality.</p>
+      </div>
+      <div class="div"></div>
+      <div class="block reveal">
+        <span class="sec-label">My Growth</span>
+        <h2 class="sec-h">What I Gained</h2>
+        <p class="sec-p">By creating blog posts, I improved my ability to communicate ideas confidently and creatively. I became more aware of audience needs and learned how to adapt my writing style accordingly. Blogging also strengthened my ability to reflect on experiences and present them in an engaging manner.</p>
+        <p class="sec-p">The activity enhanced my self-expression and digital literacy. It encouraged me to share perspectives thoughtfully and responsibly, increasing my confidence in presenting ideas publicly while maintaining clarity and coherence.</p>
+        <p class="sec-p">Blogging improved my writing fluency, creativity, and organization skills &mdash; competencies essential for academic assignments, professional communication, and building a digital portfolio. It also introduced me to the importance of maintaining a positive and professional online presence.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">IB Connection</span>
+        <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+        <div class="tags"><span class="tag">Communicator</span><span class="tag">Inquirer</span><span class="tag">Reflective</span><span class="tag">Risk-taker</span><span class="tag">Principled</span></div>
+        <ul class="blist" style="margin-top:1.5rem">
+          <li>Communicator &mdash; expressing ideas effectively through digital writing</li>
+          <li>Inquirer &mdash; exploring topics in depth before writing</li>
+          <li>Reflective &mdash; analyzing experiences and sharing insights</li>
+          <li>Risk-taker &mdash; publishing ideas for a broader audience</li>
+          <li>Principled &mdash; ensuring responsible and ethical online communication</li>
+        </ul>
+      </div>
+      <div class="callout reveal">
+        <h2 class="sec-h">Conclusion</h2>
+        <p class="sec-p">Overall, the Blogging activity was a meaningful learning experience that enhanced my creativity, communication skills, and digital confidence. It reinforced the value of thoughtful expression and responsible online engagement, supporting my academic growth and future professional development.</p>
+      </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="blogging-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="blogging-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="blogging-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#drama-review">&larr; Drama Review</a>
+        <a href="#home">Home</a>
+        <a href="#launchpad">Launchpad &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+  <div id="page-launchpad" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 18 / 20</p>
+      <h1 class="hero-title">Launchpad Pitching Competition</h1>
+      <p class="hero-tagline">Innovation, branding, and entrepreneurship &mdash; where ideas meet design</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+        <span class="sec-label">Overview</span>
+        <h2 class="sec-h">About the Competition</h2>
+        <p class="sec-p">The Launchpad Pitching Competition was an exciting entrepreneurial experience where innovation, creativity, and teamwork came together. The event challenged us to present a strong business idea with clear branding, design, and strategic thinking. Working alongside my partner Nikhil, I actively contributed to the visual identity and overall presentation of our project.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">My Role</span>
+        <h2 class="sec-h">Contribution &amp; Achievement</h2>
+        <p class="sec-p">In this competition, I focused on branding, logo creation, and design aesthetics. I worked on developing a visually compelling logo and an impactful design presentation that aligned with our business concept. Attention to detail, creativity, and clarity were key priorities in my approach.</p>
+        <div class="igrid">
+          <div class="icard"><p class="icard-t">Best Logo Award</p><p class="icard-p">Recognized for creating a compelling, memorable visual identity that communicated the brand clearly.</p></div>
+          <div class="icard"><p class="icard-t">Best Design Award</p><p class="icard-p">Honored for an impactful, cohesive design presentation that elevated the business pitch.</p></div>
+        </div>
+      </div>
+      <div class="div"></div>
+      <div class="block reveal">
+        <span class="sec-label">Key Learnings</span>
+        <h2 class="sec-h">Skills Developed</h2>
+        <p class="sec-p">Through this experience, I enhanced my presentation skills, creativity, collaboration, and strategic thinking. I learned how visual branding influences perception and how effective pitching requires clarity, persuasion, and teamwork. Winning these awards boosted my confidence and reinforced my interest in innovation and entrepreneurship.</p>
+        <p class="sec-p">The experience taught me that success in pitching is not just about ideas, but also about execution, communication, and teamwork. Every element &mdash; from the logo to the slide design to the verbal delivery &mdash; plays a role in persuading an audience.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">IB Connection</span>
+        <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+        <div class="tags"><span class="tag">Communicator</span><span class="tag">Risk-taker</span><span class="tag">Thinker</span><span class="tag">Reflective</span><span class="tag">Caring</span></div>
+        <ul class="blist" style="margin-top:1.5rem">
+          <li>Communicator &mdash; presenting ideas clearly and confidently to judges</li>
+          <li>Risk-taker &mdash; participating in a competitive entrepreneurial platform</li>
+          <li>Thinker &mdash; designing creative and strategic visual solutions</li>
+          <li>Reflective &mdash; improving through feedback and iterative evaluation</li>
+          <li>Caring &mdash; working effectively and respectfully with my partner</li>
+        </ul>
+      </div>
+      <div class="callout reveal">
+        <h2 class="sec-h">Conclusion</h2>
+        <p class="sec-p">The Launchpad competition was a milestone experience that strengthened my creativity, confidence, and entrepreneurial mindset. Winning the Best Logo and Best Design awards marked a proud achievement in my PPS journey and affirmed the power of strong visual communication in entrepreneurship.</p>
+      </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="launchpad-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="launchpad-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="launchpad-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#blogging">&larr; Blogging</a>
+        <a href="#home">Home</a>
+        <a href="#crs-conclave">CRS Conclave &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+  <div id="page-crs-conclave" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 19 / 20</p>
+      <h1 class="hero-title">CRS Conclave</h1>
+      <p class="hero-tagline">Drama, music, and innovation at an inter-school competition</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+        <span class="sec-label">Overview</span>
+        <h2 class="sec-h">About the Conclave</h2>
+        <p class="sec-p">The CRS Conclave was an inter-school competition that provided a dynamic platform to showcase talent, creativity, and collaboration across multiple domains. The event allowed me to participate in performing arts and entrepreneurship, making it a truly holistic learning experience.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">Performing Arts</span>
+        <h2 class="sec-h">On Stage</h2>
+        <p class="sec-p">During the conclave, I actively contributed to both the Drama Club and Music Club performances &mdash; taking on a role on stage and singing as part of the musical presentation. These experiences enhanced my stage confidence, expression, teamwork, and performance skills. Being part of both drama and music activities allowed me to explore my creative side and step beyond my comfort zone.</p>
+      </div>
+      <div class="div"></div>
+      <div class="block reveal">
+        <span class="sec-label">Innovation Achievement</span>
+        <h2 class="sec-h">App Pitching &amp; Recognition</h2>
+        <p class="sec-p">I also showcased the apps I developed for the pitching competition. Among 13 individual app ideas, my app was selected by one of the 6 teams to collaborate on further development &mdash; a significant validation of my technical and innovative abilities.</p>
+        <div class="igrid">
+          <div class="icard"><p class="icard-t">2nd Rank</p><p class="icard-p">Secured second place in the pitching competition after joining the selected team and collaborating toward a refined solution.</p></div>
+          <div class="icard"><p class="icard-t">Runner-Up Team</p><p class="icard-p">Became runner-up team for the overall CRS Conclave event, reflecting collective excellence across domains.</p></div>
+        </div>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">IB Connection</span>
+        <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+        <div class="tags"><span class="tag">Communicator</span><span class="tag">Risk-taker</span><span class="tag">Inquirer</span><span class="tag">Caring</span><span class="tag">Reflective</span></div>
+        <ul class="blist" style="margin-top:1.5rem">
+          <li>Communicator &mdash; performing and presenting confidently across arts and innovation</li>
+          <li>Risk-taker &mdash; participating in multiple competitive domains simultaneously</li>
+          <li>Inquirer &mdash; exploring innovation through app development and pitching</li>
+          <li>Caring &mdash; working effectively and adaptively in a team environment</li>
+          <li>Reflective &mdash; learning from competitive experiences and iterating on ideas</li>
+        </ul>
+      </div>
+      <div class="callout reveal">
+        <h2 class="sec-h">Conclusion</h2>
+        <p class="sec-p">The CRS Conclave was a multidimensional experience that allowed me to shine in performing arts, innovation, and teamwork. Securing 2nd rank in pitching and being part of the runner-up team for the entire event remains a proud achievement that reflects my growth in both personal and professional skills.</p>
+      </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="crs-conclave-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="crs-conclave-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="crs-conclave-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#launchpad">&larr; Launchpad</a>
+        <a href="#home">Home</a>
+        <a href="#listening-skills">Listening Skills &rarr;</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+  <div id="page-listening-skills" class="page" style="display:none">
+    <nav class="nav">
+      <a href="#home" class="nav-logo" data-page="home">PP<span>S</span></a>
+      <a href="#home" class="nav-back" data-page="home"><svg viewBox="0 0 28 10" fill="none"><line x1="28" y1="5" x2="4" y2="5" stroke="#4ecdc4" stroke-width="1.5"/><polyline points="8,1 2,5 8,9" stroke="#4ecdc4" stroke-width="1.5" fill="none"/></svg> All Projects</a>
+    </nav>
+    <section class="proj-hero">
+      <p class="hero-num">Project 20 / 20</p>
+      <h1 class="hero-title">Listening Skills Activity</h1>
+      <p class="hero-tagline">Empathy, patience, and presence &mdash; the foundation of meaningful communication</p>
+    </section>
+    <main class="content">
+      <div class="block reveal">
+        <span class="sec-label">Overview</span>
+        <h2 class="sec-h">About the Activity</h2>
+        <p class="sec-p">The Listening Skills Activity was an engaging and insightful experience that emphasized the true value of active listening in effective communication. Through interactive tasks, discussions, and practical exercises, I realized that listening is not simply about hearing words but about understanding emotions, intentions, and perspectives. The activity demonstrated how attentive listening strengthens both personal and professional relationships.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">Core Concept</span>
+        <h2 class="sec-h">Active vs. Passive Listening</h2>
+        <p class="sec-p">During the activity, we explored the difference between passive hearing and active listening. I learned that effective listening involves maintaining eye contact, avoiding interruptions, showing empathy, and responding thoughtfully. We practiced paraphrasing and asking clarifying questions, which helped ensure accurate understanding and reduced miscommunication.</p>
+      </div>
+      <div class="div"></div>
+      <div class="block reveal">
+        <span class="sec-label">My Growth</span>
+        <h2 class="sec-h">What I Gained</h2>
+        <p class="sec-p">By participating in paired and group exercises, I became more aware of my listening habits. I learned to be patient, stay focused, and avoid forming responses before the speaker finished. This experience improved my concentration and allowed me to connect more meaningfully with others. It also strengthened my confidence in communicating respectfully and effectively.</p>
+        <p class="sec-p">The activity enhanced my self-awareness and emotional intelligence. I began to understand how active listening builds trust, reduces conflict, and creates a supportive environment. Developing this skill has helped me become more empathetic and open-minded in conversations.</p>
+        <p class="sec-p">Strong listening skills are essential for teamwork, leadership, and academic collaboration. This activity improved my ability to participate in group discussions, understand instructions clearly, and contribute constructively &mdash; skills valuable in any future professional setting.</p>
+      </div>
+      <div class="block reveal">
+        <span class="sec-label">IB Connection</span>
+        <h2 class="sec-h">IB Learner Profile &amp; ATL Skills</h2>
+        <div class="tags"><span class="tag">Communicator</span><span class="tag">Caring</span><span class="tag">Open-minded</span><span class="tag">Reflective</span><span class="tag">Principled</span></div>
+        <ul class="blist" style="margin-top:1.5rem">
+          <li>Communicator &mdash; listening actively and expressing responses clearly</li>
+          <li>Caring &mdash; showing empathy and understanding others' viewpoints</li>
+          <li>Open-minded &mdash; respecting diverse perspectives and voices</li>
+          <li>Reflective &mdash; evaluating personal listening habits and improving them</li>
+          <li>Principled &mdash; engaging respectfully and responsibly in all conversations</li>
+        </ul>
+      </div>
+      <div class="callout reveal">
+        <h2 class="sec-h">Conclusion</h2>
+        <p class="sec-p">Overall, the Listening Skills Activity reinforced that effective communication begins with attentive listening. It helped me develop patience, empathy, and clarity in conversations. These skills will continue to support my academic success, teamwork, and personal growth, enabling me to build meaningful and respectful relationships in all areas of life.</p>
+      </div>
+    
+      <div class="photo-section reveal">
+        <span class="sec-label">Photos</span>
+        <h2 class="sec-h">Activity Photos</h2>
+        <div class="upload-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <p><strong>Add your photos:</strong> Click any slot below to upload an image from your device. Photos are saved locally in your browser.</p>
+      </div>
+        <div class="photo-grid">
+        <div class="photo-slot" data-key="listening-skills-photo-1">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="listening-skills-photo-2">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        <div class="photo-slot" data-key="listening-skills-photo-3">
+          <input type="file" accept="image/*">
+          <div class="photo-placeholder">
+            <svg class="ph-icon" viewBox="0 0 24 24" fill="none" stroke="#4ecdc4" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span class="ph-text">Add Photo</span>
+          </div>
+          <button class="photo-remove" title="Remove photo">&times;</button>
+        </div>
+        </div>
+      </div>
+    </main>
+    <footer class="proj-footer">
+      <div class="foot-nav">
+        <a href="#crs-conclave">&larr; CRS Conclave</a>
+        <a href="#home">Home</a>
+      </div>
+      <p class="foot-copy">PPS Portfolio &middot; <strong>Pravar Golecha</strong> &middot; Class 12 IBCP</p>
+    </footer>
+  </div>
+
+<script>
+const SLUGS = ['atl-skills', 'swot-analysis', 'stop-child-labour', 'international-business', 'amc-school-visit', 'book-review', 'thinking-skills', 'sticky-notes', 'gratitude-jars', 'teachers-day', 'ibcp-book-santa', 'leadership-program', 'high-court-internship', 'mindfulness', 'nzambi-matee', 'drama-review', 'blogging', 'launchpad', 'crs-conclave', 'listening-skills'];
+const pages = {};
+SLUGS.forEach(s => { pages[s] = document.getElementById('page-' + s); });
+const homePage = document.getElementById('page-home');
+
+let currentPage = 'home';
+let isTransitioning = false;
+
+function showPage(slug) {
+  if (isTransitioning) return;
+  const target = slug === 'home' ? homePage : pages[slug];
+  if (!target) return;
+  if (currentPage === slug) return;
+
+  isTransitioning = true;
+
+  // Find current visible page element
+  const currentEl = currentPage === 'home' ? homePage : pages[currentPage];
+
+  // Exit current
+  currentEl.style.transition = 'opacity 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1)';
+  currentEl.style.opacity = '0';
+  currentEl.style.transform = 'translateY(14px)';
+
+  setTimeout(() => {
+    currentEl.style.display = 'none';
+    currentEl.style.opacity = '';
+    currentEl.style.transform = '';
+    currentEl.style.transition = '';
+
+    target.style.display = 'block';
+    target.style.opacity = '0';
+    target.style.transform = 'translateY(-14px)';
+
+    // Reset animations for project hero
+    target.querySelectorAll('.hero-num, .hero-title, .hero-tagline').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow
+      el.style.animation = '';
+    });
+
+    // Reset content animation
+    const content = target.querySelector('.content');
+    if (content) {
+      content.style.animation = 'none';
+      content.offsetHeight;
+      content.style.animation = '';
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.style.transition = 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+        target.style.opacity = '1';
+        target.style.transform = 'translateY(0)';
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        currentPage = slug;
+
+        setTimeout(() => {
+          target.style.transition = '';
+          target.style.opacity = '';
+          target.style.transform = '';
+
+          // Reinit scroll reveal
+          initReveal(target);
+          isTransitioning = false;
+        }, 420);
+      });
+    });
+  }, 370);
+}
+
+function initReveal(container) {
+  const els = container.querySelectorAll('.reveal');
+  els.forEach(el => el.classList.remove('vis'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const isGrid = e.target.closest('.grid');
+        setTimeout(() => e.target.classList.add('vis'), isGrid ? (i % 15) * 55 : 0);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  els.forEach(el => io.observe(el));
+}
+
+function navigate(slug) {
+  window.location.hash = slug === 'home' ? '' : slug;
+}
+
+// Hash router
+function handleHash() {
+  const hash = window.location.hash.replace('#', '') || 'home';
+  showPage(hash);
+}
+
+// Intercept all hash links
+
+// ===== PHOTO SYSTEM =====
+const PERMANENT_PHOTOS = {
+  'atl-skills': ['pps_portfolio_images/atl-skills-01.jpg', 'pps_portfolio_images/atl-skills-02.jpeg', 'pps_portfolio_images/atl-skills-03.jpeg', 'pps_portfolio_images/atl-skills-04.jpeg'],
+  'swot-analysis': ['pps_portfolio_images/swot-analysis-01.png'],
+  'stop-child-labour': ['pps_portfolio_images/stop-child-labour-01.png', 'pps_portfolio_images/stop-child-labour-02.png'],
+  'international-business': ['pps_portfolio_images/international-business-01.png', 'pps_portfolio_images/international-business-02.png', 'pps_portfolio_images/international-business-03.png'],
+  'amc-school-visit': ['pps_portfolio_images/amc-school-visit-01.jpeg', 'pps_portfolio_images/amc-school-visit-02.jpeg'],
+  'book-review': ['pps_portfolio_images/book-review-01.png', 'pps_portfolio_images/book-review-02.png', 'pps_portfolio_images/book-review-03.jpeg'],
+  'thinking-skills': ['pps_portfolio_images/thinking-skills-01.png', 'pps_portfolio_images/thinking-skills-02.png', 'pps_portfolio_images/thinking-skills-03.png'],
+  'sticky-notes': ['pps_portfolio_images/sticky-notes-01.png', 'pps_portfolio_images/sticky-notes-02.png', 'pps_portfolio_images/sticky-notes-03.png'],
+  'gratitude-jars': ['pps_portfolio_images/gratitude-jars-01.jpeg', 'pps_portfolio_images/gratitude-jars-02.png', 'pps_portfolio_images/gratitude-jars-03.png'],
+  'teachers-day': ['pps_portfolio_images/teachers-day-01.jpeg', 'pps_portfolio_images/teachers-day-02.png', 'pps_portfolio_images/teachers-day-03.png'],
+  'ibcp-book-santa': ['pps_portfolio_images/ibcp-book-santa-01.jpeg', 'pps_portfolio_images/ibcp-book-santa-02.jpeg', 'pps_portfolio_images/ibcp-book-santa-03.png'],
+  'leadership-program': ['pps_portfolio_images/leadership-program-01.jpeg', 'pps_portfolio_images/leadership-program-02.png', 'pps_portfolio_images/leadership-program-03.png'],
+  'high-court-internship': ['pps_portfolio_images/high-court-internship-01.jpeg', 'pps_portfolio_images/high-court-internship-02.jpeg', 'pps_portfolio_images/high-court-internship-03.png'],
+  'mindfulness': ['pps_portfolio_images/mindfulness-01.png', 'pps_portfolio_images/mindfulness-02.png', 'pps_portfolio_images/mindfulness-03.png'],
+  'nzambi-matee': ['pps_portfolio_images/nzambi-matee-01.png', 'pps_portfolio_images/nzambi-matee-02.png', 'pps_portfolio_images/nzambi-matee-03.png'],
+  'drama-review': ['pps_portfolio_images/drama-review-01.png', 'pps_portfolio_images/drama-review-02.png'],
+  'blogging': ['pps_portfolio_images/blogging-01.png', 'pps_portfolio_images/blogging-02.png', 'pps_portfolio_images/blogging-03.png'],
+  'launchpad': ['pps_portfolio_images/launchpad-01.jpeg'],
+  'crs-conclave': ['pps_portfolio_images/crs-conclave-01.jpeg', 'pps_portfolio_images/crs-conclave-02.jpeg', 'pps_portfolio_images/crs-conclave-03.jpeg'],
+  'listening-skills': ['pps_portfolio_images/listening-skills-01.png', 'pps_portfolio_images/listening-skills-02.png']
+};
+
+function initPhotoSlots() {
+  document.querySelectorAll('.photo-grid').forEach(grid => {
+    const firstSlot = grid.querySelector('.photo-slot');
+    if (!firstSlot) return;
+
+    const firstKey = firstSlot.dataset.key || '';
+    const m = firstKey.match(/^(.*)-photo-\d+$/);
+    if (!m) return;
+
+    const slug = m[1];
+    const photos = PERMANENT_PHOTOS[slug] || [];
+
+    while (grid.querySelectorAll('.photo-slot').length < photos.length) {
+      const clone = firstSlot.cloneNode(true);
+      const n = grid.querySelectorAll('.photo-slot').length + 1;
+      clone.dataset.key = `${slug}-photo-${n}`;
+      const cImg = clone.querySelector('img');
+      if (cImg) cImg.remove();
+      grid.appendChild(clone);
+    }
+
+    const allSlots = Array.from(grid.querySelectorAll('.photo-slot'));
+    allSlots.forEach((slot, i) => {
+      const src = photos[i];
+      const input = slot.querySelector('input[type="file"]');
+      if (input) input.remove();
+      const removeBtn = slot.querySelector('.photo-remove');
+      if (removeBtn) removeBtn.remove();
+      const ph = slot.querySelector('.photo-placeholder');
+      if (ph) ph.style.display = 'none';
+
+      if (!src) {
+        const existing = slot.querySelector('img');
+        if (existing) existing.remove();
+        slot.classList.add('empty');
+        return;
+      }
+
+      slot.classList.remove('empty');
+      setSlotImage(slot, src);
+      slot.addEventListener('click', function(e) {
+        e.preventDefault();
+        const img = slot.querySelector('img');
+        if (img) openLightbox(img.src);
+      });
+    });
+  });
+}
+
+function setSlotImage(slot, src) {
+  let img = slot.querySelector('img');
+  if (!img) {
+    img = document.createElement('img');
+    slot.insertBefore(img, slot.firstChild);
+  }
+  img.src = src;
+  img.loading = 'lazy';
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightbox-img').src = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  const href = link.getAttribute('href');
+  if (!href || !href.startsWith('#')) return;
+  e.preventDefault();
+  const slug = href.replace('#', '') || 'home';
+  window.location.hash = slug === 'home' ? '' : slug;
+});
+
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('load', () => {
+  // Show home page, hide all project pages
+  homePage.style.display = 'block';
+  SLUGS.forEach(s => { pages[s].style.display = 'none'; });
+  handleHash();
+  initReveal(homePage);
+  initPhotoSlots();
+});
+</script>
+</body>
+</html>
+
